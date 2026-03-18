@@ -1,7 +1,12 @@
-package com.ellen.creditcard.onboard.integration;
+package com.ellen.creditcard.onboarding.integration;
 
-import org.springframework.stereotype.Component;
+import com.ellen.creditcard.onboarding.enums.CheckStatus;
 
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card identity verify third party service integrate
+ */
 public interface IdentityServiceIntegrate {
 
 
@@ -11,6 +16,6 @@ public interface IdentityServiceIntegrate {
      *
      * @return verification result
      */
-    Boolean verifyIdentity(String IdNumber);
+    public CheckStatus verifyIdentity(String emiratesId);
 
 }

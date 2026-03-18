@@ -1,24 +1,33 @@
-package com.ellen.creditcard.onboard.integration.impl;
+package com.ellen.creditcard.onboarding.integration.impl;
 
-import com.ellen.creditcard.onboard.integration.RiskEvaluationServiceIntegrate;
-import com.ellen.creditcard.onboard.util.MockUtil;
+import com.ellen.creditcard.onboarding.integration.RiskEvaluationServiceIntegrate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.util.Random;
+
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card risk evaluation third party service integrate implementation
+ */
 @Service
+@Slf4j
 public class RiskEvaluationServiceIntegrateImpl implements RiskEvaluationServiceIntegrate {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final Random random = new Random();
 
+    /**
+     *  Credit Risk Evaluation (AECB API) - Score 0-100
+     * @param income
+     * @return
+     */
     @Override
-    public Integer riskEvaluation(String IdNumber) {
-        try {
-            String url = "https://api.risk.com/data?city";
-            MockUtil.mockReturnValue(restTemplate, "getForObject", "12");
-            return Integer.valueOf(restTemplate.getForObject(url, String.class, IdNumber));
-        } catch(Exception e) {
-            //@todo 是否切换为调用异常
-            return 0;
-        }
+    public Double evaluateCreditRisk(BigDecimal income) {
+        log.info("Mock AECB Service: Evaluating credit risk for income - {}", income);
+        // Mock rule: Higher income = higher score (50-100)
+        double baseScore = income.compareTo(new BigDecimal("100000")) > 0 ? 90 : 60;
+        return baseScore + random.nextDouble() * 10;
     }
 }

@@ -1,14 +1,19 @@
-package com.ellen.creditcard.onboard.integration;
+package com.ellen.creditcard.onboarding.integration;
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card behavior analysis third party service integrate
+ */
 public interface BehaviorAnalysisServiceIntegrate {
 
     /**
      * Implement an analysis of spending habits and payment history to
      * predict future credit behavior.
-     * @param IdNumber
+     * @param bankStatement
      * @return
      */
-    Integer behaviorAnalysis(String IdNumber);
+    Double analyzeBehavior(MultipartFile bankStatement);
 }

@@ -1,4 +1,11 @@
 package com.ellen.creditcard.onboarding.enums;
 
-public class CheckStatus {
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card check status
+ */
+
+public enum CheckStatus {
+    YES, NO, PENDING
 }

@@ -1,24 +1,28 @@
-package com.ellen.creditcard.onboard.integration.impl;
+package com.ellen.creditcard.onboarding.integration.impl;
 
-import com.ellen.creditcard.onboard.integration.EmploymentProfileServiceIntegrate;
-import com.ellen.creditcard.onboard.util.MockUtil;
+import com.ellen.creditcard.onboarding.enums.CheckStatus;
+import com.ellen.creditcard.onboarding.integration.EmploymentProfileServiceIntegrate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card employment profile verify third party service integrate implementation
+ */
 @Service
+@Slf4j
 public class EmploymentProfileServiceIntegrateImpl implements EmploymentProfileServiceIntegrate {
 
-    private RestTemplate restTemplate = new RestTemplate();
-
+    /**
+     * Employment Verification (Ministry of Labor API)
+     * @param employmentDetails
+     * @return
+     */
     @Override
-    public Boolean employmentVerify() {
-        try {
-            String url = "https://api.risk.com/data?city";
-            MockUtil.mockReturnValue(restTemplate, "getForObject", "true");
-            return Boolean.valueOf(restTemplate.getForObject(url, String.class, ""));
-        } catch(Exception e) {
-            //@todo 是否切换为调用异常
-            return false;
-        }
+    public CheckStatus verifyEmployment(String employmentDetails) {
+        log.info("Mock Labor Ministry Service: Verifying employment - {}", employmentDetails);
+        // Employment Verification (Ministry of Labor API)
+        return employmentDetails.toLowerCase().contains("employed") ? CheckStatus.YES : CheckStatus.NO;
     }
 }

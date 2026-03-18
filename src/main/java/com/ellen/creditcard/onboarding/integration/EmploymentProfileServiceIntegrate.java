@@ -1,7 +1,12 @@
-package com.ellen.creditcard.onboard.integration;
+package com.ellen.creditcard.onboarding.integration;
 
-import org.springframework.stereotype.Component;
+import com.ellen.creditcard.onboarding.enums.CheckStatus;
 
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card employment profile verify third party service integrate
+ */
 public interface EmploymentProfileServiceIntegrate {
 
     /**
@@ -9,6 +14,6 @@ public interface EmploymentProfileServiceIntegrate {
      * which is a significant indicator of their ability to meet credit obligations.
      * @return verification result
      */
-    Boolean employmentVerify();
+    CheckStatus verifyEmployment(String employmentDetails);
 
 }

@@ -1,24 +1,32 @@
-package com.ellen.creditcard.onboard.integration.impl;
+package com.ellen.creditcard.onboarding.integration.impl;
 
-import com.ellen.creditcard.onboard.integration.ComplianceInfoServiceIntegrate;
-import com.ellen.creditcard.onboard.util.MockUtil;
+import com.ellen.creditcard.onboarding.enums.CheckStatus;
+import com.ellen.creditcard.onboarding.integration.ComplianceInfoServiceIntegrate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import java.util.Random;
 
+/**
+ * @author ellen
+ * @date 2026/03/18
+ * credit card compliance info check third party service integrate implementation
+ */
 @Service
+@Slf4j
 public class ComplianceInfoServiceIntegrateImpl implements ComplianceInfoServiceIntegrate {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final Random random = new Random();
 
+    /**
+     * Compliance Check (Blacklist) - Third-party commercial product
+     * @param emiratesId
+     * @param name
+     * @return
+     */
     @Override
-    public Boolean complianceCheck() {
-        try {
-            String url = "https://api.risk.com/data?city";
-            MockUtil.mockReturnValue(restTemplate, "getForObject", "true");
-            return Boolean.valueOf(restTemplate.getForObject(url, String.class, ""));
-        } catch(Exception e) {
-            //@todo 是否切换为调用异常
-            return false;
-        }
+    public CheckStatus complianceBlacklistCheck(String emiratesId, String name) {
+        log.info("Mock Compliance Service: Blacklist check for {} - {}", name, emiratesId);
+        // Mock rule: 90% pass rate (random)
+        return random.nextDouble() < 0.9 ? CheckStatus.YES : CheckStatus.NO;
     }
 }
