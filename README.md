@@ -1,6 +1,6 @@
 # Credit Card Onboarding Project Documentation
 
-## A-Project Run & Usage
+## Project Run & Usage
 
 ### 1. Run Steps
 1. Clone the code to your local machine (or create a new Maven project and copy the above code);
@@ -45,30 +45,26 @@
 - Bulk Processing: Support bulk query of application results with pagination.
 - Event-Driven Design: Use message queues (Kafka/RabbitMQ) for application submission and approval result notifications.
 
-### GitHub Delivery Instructions
-- Repository Name: credit-card-onboarding-springboot (does not contain 'Zand').
-- Content: All source code, pom.xml, and a detailed README.md (run steps + API documentation).
-- Unit Tests: All test code is included; run mvn test to execute all unit tests.
-- README.md: Detailed project structure, tech stack, run steps, and API usage examples.
-
 ## Project Structure
-com.ellen.creditcard.onboarding
-├── config/          # Configuration classes (Swagger)
-├── constant/        # Constants
-├── controller/      # API Controllers
-├── dto/             # Data Transfer Objects (Request/Response)
-├── entity/          # Database Entities
-├── enums/           # Enumeration classes (Approval status, check status, etc.)
-├── exception/       # Global Exception Handling
-├── repository/      # Data Access Layer
-├── service/         # Business Logic Layer
-│   ├── impl/        # Business Implementation Classes
-├── integration/     # Integrate third party services
-│   ├── impl/        # Integrate Mock Implementation Classes
-├── util/            # Utility Classes
-└── CreditCardOnboardingApplication.java # Main Application Class
+- com.ellen.creditcard.onboarding/
+  - config/  (Configuration classes eg:Swagger)
+  - constant/ (Constants)
+  - controller/ (API Controllers)
+  - dto/ (Data Transfer Objects - Request/Response)
+  - entity/ (Database Entities)
+  - enums/ (Enumeration classes - Approval status, check status, etc.)
+  - exception/ (Global Exception Handling)
+  - repository/ (Data Access Layer)
+  - service/ (Business Logic Layer)
+    - impl/ (Business Implementation Classes)
+  - integration/ (Integrate third party services)
+      - impl/ (Integrate Mock Implementation Classes)
+  - util (Utility Classes)
+  - CreditCardOnboardingApplication.java (Main Application Class)
+  - README.md
 
-## C-Tech Stack
+
+## Tech Stack
 - Core Framework: Spring Boot 3.2.x (latest stable version)
 - Database: H2 In-Memory Database (automatic table creation, no manual configuration)
 - API Documentation: SpringDoc OpenAPI 3 (Swagger UI)
